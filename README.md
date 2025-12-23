@@ -19,6 +19,8 @@ The philosophy behind Conductor is simple: control your code. By treating contex
 
 ## Installation
 
+### Gemini CLI Extension
+
 Install the Conductor extension by running the following command from your terminal:
 
 ```bash
@@ -26,6 +28,23 @@ gemini extensions install https://github.com/gemini-cli-extensions/conductor --a
 ```
 
 The `--auto-update` is optional: if specified, it will update to new versions as they are released.
+
+### AI Agent Skill (Claude CLI / OpenCode / Codex)
+
+Conductor is also available as a portable **skill** that works with Claude CLI, OpenCode, and other AI coding agents that support the skills standard.
+
+```bash
+# Clone the repository
+git clone https://github.com/gemini-cli-extensions/conductor.git
+cd conductor
+
+# Run the install script
+./skill/scripts/install.sh
+```
+
+This installs the skill to `~/.claude/skills/conductor/` (or `~/.opencode/skill/conductor/`).
+
+After installation, restart your AI CLI. The agent will automatically detect and use Conductor when you mention "conductor", "track", "spec-driven development", or ask for help with project planning.
 
 ## Usage
 
