@@ -42,9 +42,14 @@ cd conductor
 ./skill/scripts/install.sh
 ```
 
-This installs the skill to `~/.claude/skills/conductor/` (or `~/.opencode/skill/conductor/`).
+The installer will ask where to install:
+1. **OpenCode global** (`~/.opencode/skill/conductor/`)
+2. **Claude CLI global** (`~/.claude/skills/conductor/`)
+3. **Both**
 
-After installation, restart your AI CLI. The agent will automatically detect and use Conductor when you mention "conductor", "track", "spec-driven development", or ask for help with project planning.
+The skill is installed with symlinks to this repository, so running `git pull` will automatically update the skill.
+
+After installation, restart your AI CLI. The agent will automatically detect and use Conductor when you ask to create a new feature, write a spec, plan a feature, or set up a project.
 
 ## Usage
 
