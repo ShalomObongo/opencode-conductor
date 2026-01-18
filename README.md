@@ -25,7 +25,7 @@ Conductor is available as a portable **skill** that works with Claude CLI, OpenC
 
 ```bash
 # Clone the repository
-git clone https://github.com/gemini-cli-extensions/conductor.git
+git clone https://github.com/ShalomObongo/opencode-conductor.git
 cd conductor
 
 # Run the install script
@@ -46,7 +46,7 @@ After installation, restart your AI CLI. The agent will automatically detect and
 Conductor can also be installed as a Gemini CLI extension:
 
 ```bash
-gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update
+gemini extensions install https://github.com/ShalomObongo/opencode-conductor --auto-update
 ```
 
 The `--auto-update` flag is optional and will update to new versions as they are released.
@@ -138,7 +138,7 @@ During implementation, you can also:
 ## Resources
 
 - [Gemini CLI extensions](https://geminicli.com/docs/extensions/): Documentation about using extensions in Gemini CLI
-- [GitHub issues](https://github.com/gemini-cli-extensions/conductor/issues): Report bugs or request features
+- [GitHub issues](https://github.com/ShalomObongo/opencode-conductor/issues): Report bugs or request features
 
 ## Legal
 
