@@ -24,7 +24,7 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
     - If `STEP` is "2.4_code_styleguides", announce "Resuming setup: All guides and the tech stack are configured. Next, we will define the project workflow." and proceed to **Section 2.5**.
     - If `STEP` is "2.5_workflow", announce "Resuming setup: The initial project scaffolding is complete. Next, we will generate the first track." and proceed to **Phase 2 (3.0)**.
     - If `STEP` is "3.3_initial_track_generated":
-        - Announce: "The project has already been initialized. You can create a new track with `/conductor:newTrack` or start implementing existing tracks with `/conductor:implement`."
+        - Announce: "The project has already been initialized. You can create a new track or start implementing existing tracks."
         - Halt the `setup` process.
     - If `STEP` is unrecognized, announce an error and halt.
 
@@ -325,10 +325,30 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
             `{"last_successful_step": "2.5_workflow"}`
 
 ### 2.6 Finalization
-1.  **Summarize Actions:** Present a summary of all actions taken during Phase 1, including:
+1.  **Generate Index File:**
+    -   Create `conductor/index.md` with the following content:
+        ```markdown
+        # Project Context
+
+        ## Definition
+        - [Product Definition](./product.md)
+        - [Product Guidelines](./product-guidelines.md)
+        - [Tech Stack](./tech-stack.md)
+
+        ## Workflow
+        - [Workflow](./workflow.md)
+        - [Code Style Guides](./code_styleguides/)
+
+        ## Management
+        - [Tracks Registry](./tracks.md)
+        - [Tracks Directory](./tracks/)
+        ```
+    -   **Announce:** "Created `conductor/index.md` to serve as the project context index."
+
+2.  **Summarize Actions:** Present a summary of all actions taken during Phase 1, including:
     -   The guide files that were copied.
     -   The workflow file that was copied.
-2.  **Transition to initial plan and track generation:** Announce that the initial setup is complete and you will now proceed to define the first track for the project.
+3.  **Transition to initial plan and track generation:** Announce that the initial setup is complete and you will now proceed to define the first track for the project.
 
 ---
 
@@ -362,7 +382,6 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
             D) [Type your own answer]
             E) [Auto-generate the rest of requirements and move to the next step]
     -   **AUTO-GENERATE LOGIC:** If the user selects option E, immediately stop asking questions for this section. Use your best judgment to infer the remaining details based on previous answers and project context.
--   **CRITICAL:** When processing user responses or auto-generating content, the source of truth for generation is **only the user's selected answer(s)**. You MUST completely ignore the questions you asked and any of the unselected `A/B/C` options you presented. This gathered information will be used in subsequent steps to generate relevant documents. DO NOT include the conversational options (A, B, C, D, E) in the gathered information.
 4.  **Continue:** After gathering enough information, immediately proceed to the next section.
 
 ### 3.2 Propose a Single Initial Track (Automated + Approval)
@@ -390,19 +409,23 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
 
     ---
 
-    ## [ ] Track: <Track Description>
-    *Link: [./conductor/tracks/<track_id>/](./conductor/tracks/<track_id>/)*
+    - [ ] **Track: <Track Description>**
+      *Link: [./<Tracks Directory Name>/<track_id>/](./<Tracks Directory Name>/<track_id>/)*
     ```
+    (Replace `<Tracks Directory Name>` with the actual name of the tracks folder resolved via the protocol.)
 3.  **Generate Track Artifacts:**
     a. **Define Track:** The approved title is the track description.
     b. **Generate Track-Specific Spec & Plan:**
         i. Automatically generate a detailed `spec.md` for this track.
         ii. Automatically generate a `plan.md` for this track.
             - **CRITICAL:** The structure of the tasks must adhere to the principles outlined in the workflow file at `conductor/workflow.md`. For example, if the workflow specificies Test-Driven Development, each feature task must be broken down into a "Write Tests" sub-task followed by an "Implement Feature" sub-task.
+            - **CRITICAL:** Include status markers `[ ]` for **EVERY** task and sub-task. The format must be:
+                - Parent Task: `- [ ] Task: ...`
+                - Sub-task: `    - [ ] ...`
             - **CRITICAL: Inject Phase Completion Tasks.** You MUST read the `conductor/workflow.md` file to determine if a "Phase Completion Verification and Checkpointing Protocol" is defined. If this protocol exists, then for each **Phase** that you generate in `plan.md`, you MUST append a final meta-task to that phase. The format for this meta-task is: `- [ ] Task: Conductor - User Manual Verification '<Phase Name>' (Protocol in workflow.md)`. You MUST replace `<Phase Name>` with the actual name of the phase.
     c. **Create Track Artifacts:**
         i. **Generate and Store Track ID:** Create a unique Track ID from the track description using format `shortname_YYYYMMDD` and store it. You MUST use this exact same ID for all subsequent steps for this track.
-        ii. **Create Single Directory:** Using the stored Track ID, create a single new directory: `conductor/tracks/<track_id>/`.
+        ii. **Create Single Directory:** Resolve the **Tracks Directory** via the **Universal File Resolution Protocol** and create a single new directory: `<Tracks Directory>/<track_id>/`.
         iii. **Create `metadata.json`:** In the new directory, create a `metadata.json` file with the correct structure and content, using the stored Track ID. An example is:
             - ```json
             {
@@ -416,6 +439,14 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
             ```
         Populate fields with actual values. Use the current timestamp.
         iv. **Write Spec and Plan Files:** In the exact same directory, write the generated `spec.md` and `plan.md` files.
+        v.  **Write Index File:** In the exact same directory, write `index.md` with content:
+            ```markdown
+            # Track <track_id> Context
+
+            - [Specification](./spec.md)
+            - [Implementation Plan](./plan.md)
+            - [Metadata](./metadata.json)
+            ```
 
     d. **Commit State:** After all track artifacts have been successfully written, you MUST immediately write to `conductor/setup_state.json` with the exact content:
        `{"last_successful_step": "3.3_initial_track_generated"}`
@@ -425,5 +456,5 @@ CRITICAL: You must validate the success of every tool call. If any tool call fai
 ### 3.4 Final Announcement
 1.  **Announce Completion:** After the track has been created, announce that the project setup and initial track generation are complete.
 2.  **Save Conductor Files:** Add and commit all files with the commit message `conductor(setup): Add conductor setup files`.
-3.  **Next Steps:** Inform the user that they can now begin work by running `/conductor:implement`.
+3.  **Next Steps:** Inform the user that they can now begin work by starting implementation.
 """

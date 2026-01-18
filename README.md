@@ -77,6 +77,9 @@ Ask your agent to "set up conductor" or run `/conductor:setup` (Gemini CLI). Thi
 - `conductor/workflow.md`
 - `conductor/code_styleguides/`
 - `conductor/tracks.md`
+- `conductor/index.md` (Project context index; used by the Universal File Resolution Protocol)
+
+Conductor uses the Universal File Resolution Protocol (UFRP) to locate project and track files via `conductor/index.md` and per-track `index.md` files. The tracks directory is resolved via UFRP (default: `conductor/tracks/`).
 
 ### 2. Start a New Track (Feature or Bug)
 
@@ -89,6 +92,16 @@ Ask your agent to "create a new feature" or "start a new track", or run `/conduc
 - `conductor/tracks/<track_id>/spec.md`
 - `conductor/tracks/<track_id>/plan.md`
 - `conductor/tracks/<track_id>/metadata.json`
+- `conductor/tracks/<track_id>/index.md`
+
+New tracks are appended to `conductor/tracks.md` using the bullet format (older projects may contain legacy `## [ ] Track: ...` entries; Conductor reads both):
+
+```markdown
+---
+
+- [ ] **Track: Add a dark mode toggle to the settings page**
+*Link: [./tracks/dark_mode_20260118/](./tracks/dark_mode_20260118/)*
+```
 
 ### 3. Implement the Track
 
