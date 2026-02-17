@@ -23,8 +23,8 @@ Control your code. By treating context as a managed artifact alongside your code
 
 ```bash
 # Clone the repository
-git clone https://github.com/gemini-cli-extensions/conductor.git
-cd conductor
+git clone https://github.com/ShalomObongo/opencode-conductor.git
+cd opencode-conductor
 
 # Run the install script and select option 2 (Claude CLI global)
 ./skill/scripts/install.sh
@@ -109,6 +109,15 @@ Claude will:
 3. Update task status as it progresses
 4. Guide you through manual verification at the end of each phase
 5. Commit changes after each task (or phase, based on your preferences)
+
+### Review the Completed Track
+
+Ask Claude:
+- "Review this track"
+- "Validate the implementation against the plan"
+- "Run a conductor review"
+
+Claude will check plan compliance, style-guideline compliance, test coverage, and test results, then provide actionable findings.
 
 ### Check Status
 
@@ -232,8 +241,8 @@ git pull
 
 ## Resources
 
-- [GitHub Repository](https://github.com/gemini-cli-extensions/conductor)
-- [Report Issues](https://github.com/gemini-cli-extensions/conductor/issues)
+- [GitHub Repository](https://github.com/ShalomObongo/opencode-conductor)
+- [Report Issues](https://github.com/ShalomObongo/opencode-conductor/issues)
 - [General README](README.md) - Multi-platform documentation
 
 ## License

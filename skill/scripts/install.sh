@@ -21,8 +21,8 @@ if [ ! -f "$CONDUCTOR_ROOT/commands/conductor/setup.toml" ]; then
     echo "Expected to find: $CONDUCTOR_ROOT/commands/conductor/setup.toml"
     echo ""
     echo "Please clone the repository first:"
-    echo "  git clone https://github.com/gemini-cli-extensions/conductor.git"
-    echo "  cd conductor"
+    echo "  git clone https://github.com/ShalomObongo/opencode-conductor.git"
+    echo "  cd opencode-conductor"
     echo "  ./skill/scripts/install.sh"
     exit 1
 fi

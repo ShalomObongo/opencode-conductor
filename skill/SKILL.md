@@ -1,6 +1,6 @@
 ---
 name: conductor
-description: Use when the user wants to setup a new project, create a new feature, write a spec, plan a feature, fix a bug with a plan, start a new track, check project status, implement next task, or revert changes. Also use when user mentions "conductor", "track", or "spec-driven development". If conductor is not yet configured in the project, start with setup.
+description: Use when the user wants to setup a new project, create a new feature, write a spec, plan a feature, fix a bug with a plan, start a new track, implement next task, review completed work, check project status, or revert changes. Also use when user mentions "conductor", "track", or "spec-driven development". If conductor is not yet configured in the project, start with setup.
 ---
 
 # Conductor
@@ -41,6 +41,7 @@ conductor/
 | **Setup** | Initialize Conductor in a project (new or existing) |
 | **New Track** | Create a new feature/bug track with spec and plan |
 | **Implement** | Execute tasks from a track's plan following TDD workflow |
+| **Review** | Review completed track work against plan and guidelines |
 | **Status** | Show progress overview of all tracks |
 | **Revert** | Git-aware rollback of tracks, phases, or tasks |
 
@@ -53,6 +54,7 @@ The detailed protocols are in TOML format. Read the `prompt` field from each fil
 | Setup project | `commands/conductor/setup.toml` |
 | Create new track | `commands/conductor/newTrack.toml` |
 | Implement tasks | `commands/conductor/implement.toml` |
+| Review completed work | `commands/conductor/review.toml` |
 | Check status | `commands/conductor/status.toml` |
 | Revert changes | `commands/conductor/revert.toml` |
 
@@ -77,12 +79,13 @@ The detailed protocols are in TOML format. Read the `prompt` field from each fil
 - **"set up conductor" or "initialize project"** -> Read `commands/conductor/setup.toml`
 - **"new feature", "new track", "plan a feature"** -> Read `commands/conductor/newTrack.toml`
 - **"implement", "start working", "next task"** -> Read `commands/conductor/implement.toml`
+- **"review", "validate changes", "check implementation"** -> Read `commands/conductor/review.toml`
 - **"status", "progress", "where are we"** -> Read `commands/conductor/status.toml`
 - **"revert", "undo", "rollback"** -> Read `commands/conductor/revert.toml`
 
 ## Assets
 
-- **Code Styleguides**: `templates/code_styleguides/` (general, go, python, javascript, typescript, html-css)
+- **Code Styleguides**: `templates/code_styleguides/` (general, go, python, javascript, typescript, html-css, cpp)
 - **Workflow Template**: `templates/workflow.md`
 
 ## Critical Rules

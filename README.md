@@ -26,7 +26,7 @@ Conductor is available as a portable **skill** that works with Claude CLI, OpenC
 ```bash
 # Clone the repository
 git clone https://github.com/ShalomObongo/opencode-conductor.git
-cd conductor
+cd opencode-conductor
 
 # Run the install script
 ./skill/scripts/install.sh
@@ -122,6 +122,7 @@ During implementation, you can also:
 
 - **Check status**: Ask "check project status" or run `/conductor:status` (Gemini CLI) to get a high-level overview of your project's progress.
 - **Revert work**: Ask "revert the last track" or run `/conductor:revert` (Gemini CLI) to undo a feature or a specific task if needed.
+- **Review work**: Ask "review this track" or run `/conductor:review` (Gemini CLI) to validate implementation quality against the plan, guidelines, and tests.
 
 ## Commands Reference
 
@@ -132,6 +133,7 @@ During implementation, you can also:
 | `/conductor:setup` | Scaffolds the project and sets up the Conductor environment. Run this once per project. | `conductor/product.md`<br>`conductor/product-guidelines.md`<br>`conductor/tech-stack.md`<br>`conductor/workflow.md`<br>`conductor/tracks.md` |
 | `/conductor:newTrack` | Starts a new feature or bug track. Generates `spec.md` and `plan.md`. | `conductor/tracks/<id>/spec.md`<br>`conductor/tracks/<id>/plan.md`<br>`conductor/tracks.md` |
 | `/conductor:implement` | Executes the tasks defined in the current track's plan. | `conductor/tracks.md`<br>`conductor/tracks/<id>/plan.md` |
+| `/conductor:review` | Reviews completed work against guidelines and the plan. | Reads `plan.md`, `product-guidelines.md` |
 | `/conductor:status` | Displays the current progress of the tracks file and active tracks. | Reads `conductor/tracks.md` |
 | `/conductor:revert` | Reverts a track, phase, or task by analyzing git history. | Reverts git history |
 
