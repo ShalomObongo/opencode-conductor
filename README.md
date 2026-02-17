@@ -4,6 +4,8 @@
 
 Conductor is a portable AI agent skill that enables **Context-Driven Development**. It works with Claude Code, OpenCode, Gemini CLI, and other AI coding agents, transforming them into proactive project managers that follow a strict protocol to specify, plan, and implement software features and bug fixes.
 
+This fork (`opencode-conductor`) tracks upstream protocol updates and includes OpenCode-focused improvements, including multi-agent verification during implementation.
+
 Instead of just writing code, Conductor ensures a consistent, high-quality lifecycle for every task: **Context -> Spec & Plan -> Implement**.
 
 The philosophy behind Conductor is simple: control your code. By treating context as a managed artifact alongside your code, you transform your repository into a single source of truth that drives every agent interaction with deep, persistent project awareness.
@@ -16,6 +18,8 @@ The philosophy behind Conductor is simple: control your code. By treating contex
 - **Work as a team**: Set project-level context for your product, tech stack, and workflow preferences that become a shared foundation for your team.
 - **Build on existing projects**: Intelligent initialization for both new (Greenfield) and existing (Brownfield) projects.
 - **Smart revert**: A git-aware revert command that understands logical units of work (tracks, phases, tasks) rather than just commit hashes.
+- **Independent verification**: Optional double-tap verification before final track completion to reduce implementation blind spots.
+- **Track review workflow**: Review completed work against plan, guidelines, and test outcomes with `/conductor:review`.
 
 ## Installation
 
@@ -117,6 +121,7 @@ Conductor will:
 2.  Follow the defined workflow (e.g., TDD: Write Test -> Fail -> Implement -> Pass).
 3.  Update the status in the plan as it progresses.
 4.  **Verify Progress**: Guide you through a manual verification step at the end of each phase to ensure everything works as expected.
+5.  **Double-Tap Verification**: Run an independent verification pass before marking the track fully complete.
 
 During implementation, you can also:
 
